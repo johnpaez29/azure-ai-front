@@ -6,9 +6,13 @@ import { useLoading } from "@/app/contexts/loadingContext";
 import { search } from "@/app/services/searchService";
 import { SearchRequest } from "@/app/types/searchRequest";
 import { SearchResponse } from "@/app/types/searchResult";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SearchingBlob() {
+
+    useEffect(() => {
+        onSearch(null,null);
+    }, []);
 
     const [results, setResults] = useState<SearchResponse | null>(null);
     const { startLoading, stopLoading } = useLoading();
@@ -47,6 +51,7 @@ export default function SearchingBlob() {
             />
             <GridCar 
                 results={results}
+                showImage={false}
             />
         </div>
     )
