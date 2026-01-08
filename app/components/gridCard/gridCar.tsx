@@ -2,10 +2,21 @@ import { SearchDocument, SearchResponse } from "@/app/types/searchResult";
 
 interface GridCarProps {
     results : SearchResponse<SearchDocument> | null;
+    showImage: boolean;
 }
 
-export default function GridCar({results} : GridCarProps) {
+export default function GridCar({results, showImage} : GridCarProps) {
+    const GetUrl  = (url : string, path: string) : string | null =>  {
+        
+        if (!url && !path) {
+            return null;
+        }
 
+        const lastPath = url ? "../"+ url : atob(path); 
+
+        console.log("path", lastPath);
+        return lastPath;
+    }
 
     return (
         <div className="container text-cyan-950!">
@@ -26,8 +37,8 @@ export default function GridCar({results} : GridCarProps) {
                             </p>
                         }
                         {
-                            item.Url &&
-                            <img src={"../"+item.Url} 
+                            showImage && GetUrl(item.Url, item["metadata_storage_path"]) &&
+                            <img src={GetUrl(item.Url, item["metadata_storage_path"]) || item.Url} 
                             className="w-full max-w-md mx-auto rounded-lg shadow-2xl"
                             alt="My Image" />
                         }

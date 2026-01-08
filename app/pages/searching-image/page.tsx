@@ -8,30 +8,30 @@ import { SearchRequest } from "@/app/types/searchRequest";
 import { SearchResponse } from "@/app/types/searchResult";
 import { useState } from "react";
 
-export default function SearchingSql() {
+export default function SearchingBlob() {
 
     const [results, setResults] = useState<SearchResponse | null>(null);
     const { startLoading, stopLoading } = useLoading();
     const onSearch = async (query: string | null, selectedLocation: string | null) => {
         const request: SearchRequest = {
             search: query || "*",
-            top: 10,
+            top: 20,
             skip: 0,
             count: true,
-            facets: ["Category"],
-            indexName: "azuresql-index"
+            facets: ["locations"],
+            indexName: "azureblob-image-index"
             };
 
         
         if (selectedLocation) {
-            request.filter = `Category eq '${selectedLocation}'`;
+            request.filter = `locations/any(l: l eq '${selectedLocation}')`;
         }
 
         try {
             startLoading();
             const data = await search(request);
+            
             console.log(data, "response");
-
             setResults(data);
         } finally {
             stopLoading();
@@ -42,8 +42,8 @@ export default function SearchingSql() {
             <SeachBar 
                 results={results} 
                 onSearch={onSearch}
-                facetName="Category" 
-                showCategory = {true}
+                facetName="locations"
+                showCategory = {false}
             />
             <GridCar 
                 results={results}

@@ -14,7 +14,7 @@ export interface SearchDocument {
   layoutText: string[];
   locations: string[];
   mergedContent: string;
-  metadataStoragePath: string;
+  metadata_storage_path: string;
   organizations: string[];
   people: string[];
   text: string[];

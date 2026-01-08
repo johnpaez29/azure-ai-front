@@ -7,7 +7,8 @@ function NavbarLayout() {
         </a>
         <ul className="md:flex mx-20 space-x-6">
           <li><a href="/pages/searching-sql" className="hover:text-blue-300! transition-colors duration-300">Azure SQL</a></li>
-          <li><a href="/pages/searching-blob" className="hover:text-blue-300! transition-colors duration-300">Blobs</a></li>
+          <li><a href="/pages/searching-blob" className="hover:text-blue-300! transition-colors duration-300">Files</a></li>
+          <li><a href="/pages/searching-image" className="hover:text-blue-300! transition-colors duration-300">Images</a></li>
         </ul>
       </div>
     </nav>

@@ -19,6 +19,7 @@ export default function SearchingBlob() {
             skip: 0,
             count: true,
             facets: ["locations"],
+            indexName: "azureblob-index"
             };
 
         
